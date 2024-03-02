@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="breadcrumbs"><i class='bx bx-home'></i> <a href="">Home</a> &#47; Search Results for: {{q}}</div>
+    <div class="content-title"><h1>Search Results for: {{q}}</h1></div>
+    <form class="search-box" action="{% url 'search' %}" method="get">
+        <input type="text" name="q" placeholder="search..." value="{{q}}">
+        <input type="submit" value="Search">
+    </form>
+    {% if content_obj %}
+    <div class="content-container">
+
+        {% for content in content_obj %}
+        {% include 'core/content.html' with data=content %}
+        {% endfor %}
+    
+    </div>
+    <div class="pagination">
+        {% if previous %}
+        <a class="paginator" href="{% url 'search' %}&q={{q}}&page={{previous}}">Previous</a>
+        {% endif %}
+
+        {% if next %}
+        <a class="paginator" href="{% url 'search' %}&q={{q}}&page={{next}}">Next</a>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="content-container">
+
+        <h1>No Result found</h1>
+    
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

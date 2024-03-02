@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="breadcrumbs"><i class='bx bx-home'></i> <a href="{% url 'index' %}">Home</a> &#47; <a href="">{{content.category}}</a> &#47; {{content.title}}</div>
+    <div class="content-title"><h1>{{content.title}}</h1></div>
+    <div class="auther-and-timesince">
+        <small class="auther"><i class='bx bxs-user-account'></i>{{content.author.full_name}}<span></span>{{content.title}}</small><small class="timesince"><span></span>{{content.timesince}}</small><span></span><small>{{content.views}} views</small>
+    </div>
+    <div class="thumbnail-container">
+        {% if content.thumbnail %}
+        <img src="{{content.thumbnail.url}}" alt="">
+        {% else %}
+        <img src="{% static 'core/img/placeholder_1.jpg' %}" alt="">
+        {% endif %}
+    </div>
+    <div class="main-content-div">{{content.content|safe}}</div>
+    {% if content.yt_video_id %}
+    <iframe class="video-display" src="https://www.youtube.com/embed/{{content.yt_video_id}}" allow="fullscreen;">
+    </iframe>
+    {% endif %}
+    {% if related_content %}
+    <div class="related">
+        <h4 class="title">Related Articles</h4>
+        <div class="border"></div>
+        <div class="releted-content-container">
+            {% for related_content_obj in related_content %}
+            <a href="{% url 'content' related_content_obj.id %}" class="related-content">
+                <div class="img-container">
+                    {% if related_content_obj.thumbnail %}
+                    <img src="{{related_content_obj.thumbnail.url}}" alt="">
+                    {% else %}
+                    <img src="{% static 'core/img/placeholder_2.webp' %}" alt="{{related_content_obj.title}}">
+                    {% endif %}
+                </div>
+                <div class="title">{{related_content_obj.title}}</div>
+                <div class="timesince"><i class='bx bxs-time-five' ></i> {{related_content_obj.timesince}} </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

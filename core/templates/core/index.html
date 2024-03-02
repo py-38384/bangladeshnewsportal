@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+{% if highlighted_content %}
+<div class="carousel-container">
+    <div class="carousel">
+        <div class="slider">
+            {% for content in highlighted_content %}
+            <a href="{% url 'content' content.id %}" class="slide">
+                <div class="img-container">
+                    {% if content.thumbnail %}
+                    <img style="background: linear-gradient(to bottom, rgba(0,0,0,0.01),rgba(24, 25, 26, 0.774));" src="{{content.thumbnail.url}}" alt="placeholder">
+                    {% else %}
+                    <img src="{% static 'core/img/placeholder_2.webp' %}" alt="placeholder">
+                    {% endif %}
+                </div>
+                <div class="caption-container">
+                    <h2>{{content.title}}</h2>
+                    <div>{{content.brief}}</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="controls">
+            <div class="prev arrow">
+                <span></span>
+            </div>
+            <div class="next arrow">
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="content-container">
+
+    {% for content in content_obj %}
+    {% include 'core/content.html' with data=content %}
+    {% endfor %}
+
+</div>
+{% endblock content %}
+{% block script %}
+<script src="{% static 'core/js/slider.js' %}"></script>
+{% endblock script %}

@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="breadcrumbs"><i class='bx bx-home'></i> <a href="">Home</a> &#47; <a href="">Technology</a> &#47; 5G technology brings a revolution in scientific industry</div>
+    <div class="content-title"><h1>5G technology brings a revolution in scientific industry</h1></div>
+    <div class="content-container">
+
+        {% for i in range %}
+        {% include 'core/content.html' with data=content_obj %}
+        {% endfor %}
+    
+    </div>
+    <div class="pagination-wrapper">
+        <div class="pagination">
+            <a class="paginator" href="">3</a>
+            <a class="paginator" href="">2</a>
+            <a class="paginator" href="">1</a>
+            <a class="paginator" href="">..</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

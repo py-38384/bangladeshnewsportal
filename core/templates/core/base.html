@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bangladesh news portal{% endblock title %}</title>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    {% block style %}{% endblock style %}
+    <link rel="stylesheet" href="{% static 'core/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen' ></i>
+            <span class="logo navLogo"><a href="{% url 'index' %}">LOGO</a></span>
+    
+            <div class="menu">
+                <div class="logo-toggle">
+                    <span class="logo"><a href="#">LOGO</a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+    
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+    
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-moon moon'></i>
+                    <i class='bx bx-sun sun'></i>
+                </div>
+    
+                <div class="searchBox">
+                   <div class="searchToggle">
+                    <i class='bx bx-x cancel'></i>
+                    <i class='bx bx-search search'></i>
+                   </div>
+    
+                    <form action="{% url 'search' %}" method="get" class="search-field">
+                        <input name="q" type="text" placeholder="Search...">
+                        <button class="search-submit-btn"><i class='bx bx-search'></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+    <script src="{% static 'core/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'core/js/main.js' %}"></script>
+    {% block script %}{% endblock script %}
+</body>
+</html>
