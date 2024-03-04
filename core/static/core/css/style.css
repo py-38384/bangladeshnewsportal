@@ -559,6 +559,9 @@ body.dark .search-field input{
 .main-content-div a{
     color: rgb(0, 153, 255);
 }
+.no-result{
+    color: var(--content-header-title-text-color);
+}
 @media (max-width: 940px){
     .slider .slide .caption-container h2{
         font-size: 15px;

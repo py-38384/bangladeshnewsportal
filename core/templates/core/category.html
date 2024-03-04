@@ -2,22 +2,31 @@
 {% load static %}
 {% block content %}
 <div class="content-wrapper">
-    <div class="breadcrumbs"><i class='bx bx-home'></i> <a href="">Home</a> &#47; <a href="">Technology</a> &#47; 5G technology brings a revolution in scientific industry</div>
-    <div class="content-title"><h1>5G technology brings a revolution in scientific industry</h1></div>
+    <div class="breadcrumbs"><i class='bx bx-home'></i> <a href="">Home</a> &#47; {{current_category}}</div>
+    <div class="content-title"><h1>{{current_category}}</h1></div>
+    {% if content_obj %}
     <div class="content-container">
 
-        {% for i in range %}
-        {% include 'core/content.html' with data=content_obj %}
+        {% for content in content_obj %}
+        {% include 'core/content.html' with data=content %}
         {% endfor %}
     
     </div>
-    <div class="pagination-wrapper">
-        <div class="pagination">
-            <a class="paginator" href="">3</a>
-            <a class="paginator" href="">2</a>
-            <a class="paginator" href="">1</a>
-            <a class="paginator" href="">..</a>
-        </div>
+    <div class="pagination">
+        {% if previous %}
+        <a class="paginator" href="{% url 'category' %}?&category={{current_category}}&page={{previous}}">Previous</a>
+        {% endif %}
+
+        {% if next %}
+        <a class="paginator" href="{% url 'category' %}?&category={{current_category}}&page={{next}}">Next</a>
+        {% endif %}
     </div>
+    {% else %}
+    <div class="content-container">
+
+        <h1 class="no-result">No Result found</h1>
+    
+    </div>
+    {% endif %}
 </div>
 {% endblock content %}

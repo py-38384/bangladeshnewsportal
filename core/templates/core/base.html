@@ -24,11 +24,9 @@
                 </div>
     
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    {% for category in categorys %}
+                    <li><a href="{% url 'category' %}?category={{category.name}}">{{category.name}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
     

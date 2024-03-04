@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="content-wrapper">
-    <div class="breadcrumbs"><i class='bx bx-home'></i> <a href="{% url 'index' %}">Home</a> &#47; <a href="">{{content.category}}</a> &#47; {{content.title}}</div>
+    <div class="breadcrumbs"><i class='bx bx-home'></i> <a href="{% url 'index' %}">Home</a> &#47; <a href="{% url 'category' %}?&category={{content.category}}">{{content.category}}</a> &#47; {{content.title}}</div>
     <div class="content-title"><h1>{{content.title}}</h1></div>
     <div class="auther-and-timesince">
         <small class="auther"><i class='bx bxs-user-account'></i>{{content.author.full_name}}<span></span>{{content.title}}</small><small class="timesince"><span></span>{{content.timesince}}</small><span></span><small>{{content.views}} views</small>

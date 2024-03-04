@@ -39,6 +39,15 @@
     {% endfor %}
 
 </div>
+<div class="pagination">
+    {% if previous %}
+    <a class="paginator" href="{% url 'index' %}&page={{previous}}">Previous</a>
+    {% endif %}
+
+    {% if next %}
+    <a class="paginator" href="{% url 'index' %}&page={{next}}">Next</a>
+    {% endif %}
+</div>
 {% endblock content %}
 {% block script %}
 <script src="{% static 'core/js/slider.js' %}"></script>
