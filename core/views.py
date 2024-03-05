@@ -26,13 +26,15 @@ def index(request):
 
 def content_details(request,slug):
     context = {}
-    content_obj = Content.objects.get(slug=slug)
-    content_obj.views += 1
-    content_obj.save()
-    related_content_obj = Content.objects.filter(category=content_obj.category).exclude(slug=slug)[0:3]
-    context['content'] = content_obj
-    context['related_content'] = related_content_obj
-    return render(request,'core/content_details.html',context)
+    if Content.objects.filter(slug=slug).exists():
+        content_obj = Content.objects.get(slug=slug)
+        content_obj.views += 1
+        content_obj.save()
+        related_content_obj = Content.objects.filter(category=content_obj.category).exclude(slug=slug)[0:3]
+        context['content'] = content_obj
+        context['related_content'] = related_content_obj
+        return render(request,'core/content_details.html',context)
+    raise Http404()
 
 def search(request):
     context = {}
