@@ -67,6 +67,9 @@ body.dark nav{
     border: 1px solid #393838;
 
 }
+.logo-img{
+    width: 100px;
+}
 
 nav .nav-bar{
     position: relative;
@@ -93,6 +96,9 @@ nav .nav-bar .logo a{
     font-size: 25px;
     font-weight: 500;
     color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu .logo-toggle{
